@@ -4,10 +4,71 @@
  */
 package lab3p2;
 
-/**
- *
- * @author ADMIN
- */
-public class WaterType {
-    
+public class WaterType extends Pokemon {
+
+    private boolean vivirFueraAgua;
+    private int rapidezNadar;
+
+    public WaterType(boolean vivirFueraAgua, int rapidezNadar, String nombrePokemon, int numeroEntrada, String naturaleza) {
+        super(nombrePokemon, numeroEntrada, naturaleza);
+        this.vivirFueraAgua = vivirFueraAgua;
+        this.rapidezNadar = rapidezNadar;
+    }
+
+    public boolean isVivirFueraAgua() {
+        return vivirFueraAgua;
+    }
+
+    public void setVivirFueraAgua(boolean vivirFueraAgua) {
+        this.vivirFueraAgua = vivirFueraAgua;
+    }
+
+    public int getRapidezNadar() {
+        return rapidezNadar;
+    }
+
+    public void setRapidezNadar(int rapidezNadar) {
+        this.rapidezNadar = rapidezNadar;
+    }
+
+    public String getNombrePokemon() {
+        return nombrePokemon;
+    }
+
+    public void setNombrePokemon(String nombrePokemon) {
+        this.nombrePokemon = nombrePokemon;
+    }
+
+    public int getNumeroEntrada() {
+        return numeroEntrada;
+    }
+
+    public void setNumeroEntrada(int numeroEntrada) {
+        this.numeroEntrada = numeroEntrada;
+    }
+
+    public String getNaturaleza() {
+        return naturaleza;
+    }
+
+    public void setNaturaleza(String naturaleza) {
+        this.naturaleza = naturaleza;
+    }
+
+    public boolean isAtrapado() {
+        return atrapado;
+    }
+
+    public void setAtrapado(boolean atrapado) {
+        this.atrapado = atrapado;
+    }
+
+    public Pokeball getBall() {
+        return ball;
+    }
+
+    public void setBall(Pokeball ball) {
+        this.ball = ball;
+    }
+
 }

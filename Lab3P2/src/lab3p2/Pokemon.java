@@ -4,10 +4,58 @@
  */
 package lab3p2;
 
-/**
- *
- * @author ADMIN
- */
 public class Pokemon {
-    
+
+    protected String nombrePokemon;
+    protected int numeroEntrada;
+    protected String naturaleza;
+    protected boolean atrapado = false;
+    protected Pokeball ball;
+
+    public Pokemon(String nombrePokemon, int numeroEntrada, String naturaleza) {
+        this.nombrePokemon = nombrePokemon;
+        this.numeroEntrada = numeroEntrada;
+        this.naturaleza = naturaleza;
+    }
+
+    public String getNombrePokemon() {
+        return nombrePokemon;
+    }
+
+    public void setNombrePokemon(String nombrePokemon) {
+        this.nombrePokemon = nombrePokemon;
+    }
+
+    public int getNumeroEntrada() {
+        return numeroEntrada;
+    }
+
+    public void setNumeroEntrada(int numeroEntrada) {
+        this.numeroEntrada = numeroEntrada;
+    }
+
+    public String getNaturaleza() {
+        return naturaleza;
+    }
+
+    public void setNaturaleza(String naturaleza) {
+        this.naturaleza = naturaleza;
+    }
+
+    public boolean isAtrapado() {
+        return atrapado;
+    }
+
+    public void setAtrapado(boolean atrapado) {
+        this.atrapado = atrapado;
+    }
+
+    public Pokeball getBall() {
+        return ball;
+    }
+
+    public void setBall(Pokeball ball) {
+        this.ball = ball;
+    }
+
 }
