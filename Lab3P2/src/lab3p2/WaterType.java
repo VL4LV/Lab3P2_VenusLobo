@@ -74,4 +74,10 @@ public class WaterType extends Pokemon {
         this.ball = ball;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "\nVive fuera del agua=" + vivirFueraAgua + "\n"
+                + "Rapidez al nadar = " + rapidezNadar;
+    }
+
 }

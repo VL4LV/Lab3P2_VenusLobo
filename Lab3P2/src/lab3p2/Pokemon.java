@@ -61,4 +61,14 @@ public class Pokemon {
         this.ball = ball;
     }
 
+    @Override
+    public String toString() {
+        return "Nombre del Pokemon = " + nombrePokemon +"\n"
+                + "Numero de entrada = " + numeroEntrada +"\n"
+                + "Naturaleza = " + naturaleza +"\n"
+                + "Atrapado = " + atrapado +"\n"
+                + "PokeBall = " + ball;
+
+    }
+
 }

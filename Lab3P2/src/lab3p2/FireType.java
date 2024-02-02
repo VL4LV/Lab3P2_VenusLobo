@@ -56,4 +56,10 @@ public class FireType extends Pokemon {
         this.atrapado = atrapado;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "\nPotencia de llamas = " + potenciaLlamas;
+    }
+
+    
 }

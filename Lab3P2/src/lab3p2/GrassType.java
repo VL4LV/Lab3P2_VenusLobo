@@ -30,6 +30,7 @@ public class GrassType extends Pokemon {
         return dominioPlantas;
     }
 
+    
     public void setDominioPlantas(int dominioPlantas) {
         this.dominioPlantas = dominioPlantas;
     }
@@ -74,4 +75,10 @@ public class GrassType extends Pokemon {
         this.ball = ball;
     }
 
+    @Override
+    public String toString() {
+        return "GrassType{" + "habitad=" + habitad + ", dominioPlantas=" + dominioPlantas + '}';
+    }
+
+    
 }

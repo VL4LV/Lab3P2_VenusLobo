@@ -5,6 +5,7 @@
 package lab3p2;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Lab3P2 {
@@ -15,6 +16,7 @@ public class Lab3P2 {
 
         int opc = 0;
         while (opc != 7) {
+            System.out.println();
             System.out.println("---MENU PRINCIPAL---");
             System.out.println("1. CREAR POKEMON");
             System.out.println("2. CREAR POKEBOLA");
@@ -28,6 +30,7 @@ public class Lab3P2 {
 
             switch (opc) {
                 case 1:
+                    System.out.println();
                     System.out.print("Ingrese nombre del pokemon: ");
                     sc.nextLine();
                     String nombre = sc.nextLine();
@@ -42,6 +45,8 @@ public class Lab3P2 {
                     System.out.print("Ingrese el tipo de pokemon (Fire, Water, Grass): ");
                     String type = sc.nextLine();
 
+                    Pokemon nuevoPokemon;
+
                     if (type.equalsIgnoreCase("fire")) {
                         int potencia;
 
@@ -55,9 +60,28 @@ public class Lab3P2 {
 
                         } while (potencia < 0);
 
+                        // Crear un FireType especifico
+                        FireType firePokemon = new FireType();
+                        firePokemon.setNombrePokemon(nombre);
+                        firePokemon.setNumeroEntrada(numeroPokedex);
+                        firePokemon.setNaturaleza(naturaleza);
+                        firePokemon.setPotenciaLlamas(potencia);
+
+                        po.add(firePokemon);
+
                     } else if (type.equalsIgnoreCase("water")) {
-                        System.out.print("Puede vivir fuera del agua (1.Si/2.No): ");
-                        int vive = sc.nextInt();
+                        int vive;
+                        do {
+                            System.out.print("Puede vivir fuera del agua (1.Si/2.No): ");
+                            vive = sc.nextInt();
+                            sc.nextLine(); // Consumir nueva línea
+
+                            if (vive < 1 || vive > 2) {
+                                System.out.println("Ingrese 1 para 'Si' o 2 para 'No'.");
+                            }
+                        } while (vive < 1 || vive > 2);
+
+                        boolean puedeVivirFueraAgua = (vive == 1);
 
                         int rapidez;
                         do {
@@ -70,10 +94,20 @@ public class Lab3P2 {
 
                         } while (rapidez < 0);
 
+                        // Crear un WaterType especifico
+                        WaterType waterPokemon = new WaterType();
+                        waterPokemon.setNombrePokemon(nombre);
+                        waterPokemon.setNumeroEntrada(numeroPokedex);
+                        waterPokemon.setNaturaleza(naturaleza);
+                        waterPokemon.setVivirFueraAgua(puedeVivirFueraAgua);
+                        waterPokemon.setRapidezNadar(rapidez);
+
+                        po.add(waterPokemon);
+
                     } else if (type.equalsIgnoreCase("grass")) {
                         System.out.println("Ingrese el habitat: ");
                         String habitat = sc.nextLine();
-                        
+
                         int dominio;
                         do {
                             System.out.print("Ingrese el dominio sobre las plantas (1-100): ");
@@ -87,10 +121,47 @@ public class Lab3P2 {
 
                         } while (dominio < 0 || dominio < 1 || dominio > 100);
 
+
+
+                            // Crear un GrassType especifico
+                        GrassType grassPokemon = new GrassType();
+                        grassPokemon.setNombrePokemon(nombre);
+                        grassPokemon.setNumeroEntrada(numeroPokedex);
+                        grassPokemon.setNaturaleza(naturaleza);
+                        grassPokemon.setHabitad(habitat);
+                        grassPokemon.setDominioPlantas(dominio);
+
+                        po.add(grassPokemon);
                     }
 
-                    Pokemon nuevoPokemon = new Pokemon(nombre, numeroPokedex, naturaleza);
+                    System.out.println("Pokemon creado.");
 
+                    break; //FIN DEL CASE 1
+
+                case 2:
+                    System.out.print("Ingrese color de la Pokeball: ");
+                    String color = sc.nextLine();
+                    
+                    
+                    System.out.print("Ingrese el numero de serie: ");
+                    int numeroSerie = sc.nextInt(); 
+                    
+                    int eficienciaAtrapado = new Random().nextInt(3) + 1;
+                    System.out.print("Eficiencia de atrapado: "+eficienciaAtrapado);
+                    
+                    Pokeball ball = new Pokeball(color, numeroSerie,eficienciaAtrapado);
+                    break;
+
+                case 3:
+                    System.out.println("POKEMONS");
+                    if (po.isEmpty()) {
+                        System.out.println("No hay pokemons.");
+                    } else {
+                        for (Pokemon p : po) {
+                            System.out.println(p.toString());
+                            System.out.println("-----------------------------------");
+                        }
+                    }
                     break;
                 default:
                     System.out.println("Esa opcion no esta disponible.");
