@@ -23,6 +23,7 @@ public class Lab3P2 {
             System.out.println("5. CAPTURAR POKEMON");
             System.out.println("6. MODIFICAR POKEMON");
             System.out.println("7. SALIR DEL PROGRAMA");
+            System.out.print("Que vamos hacer: ");
             opc = sc.nextInt();
 
             switch (opc) {
@@ -34,20 +35,62 @@ public class Lab3P2 {
                     System.out.print("Ingrese un numero de entrada en la pokedex: ");
                     int numeroPokedex = sc.nextInt();
 
-                    System.out.println("Ingrese la naturaleza (Timido, Energetico, Misterioso): ");
+                    System.out.print("Ingrese la naturaleza (Timido, Energetico, Misterioso): ");
                     sc.nextLine();
-                    String naturaleza= sc.nextLine();
-                    
-                    
-                    
-                    if (naturaleza.equalsIgnoreCase("timido")) {
+                    String naturaleza = sc.nextLine();
+
+                    System.out.print("Ingrese el tipo de pokemon (Fire, Water, Grass): ");
+                    String type = sc.nextLine();
+
+                    if (type.equalsIgnoreCase("fire")) {
+                        int potencia;
+
+                        do {
+                            System.out.print("Ingrese la potencia de sus llamas: ");
+                            potencia = sc.nextInt();
+
+                            if (potencia < 0) {
+                                System.out.println("La potencia no puede ser negativa.");
+                            }
+
+                        } while (potencia < 0);
+
+                    } else if (type.equalsIgnoreCase("water")) {
+                        System.out.print("Puede vivir fuera del agua (1.Si/2.No): ");
+                        int vive = sc.nextInt();
+
+                        int rapidez;
+                        do {
+                            System.out.print("Ingrese rapidez al nadar: ");
+                            rapidez = sc.nextInt();
+
+                            if (rapidez < 0) {
+                                System.out.println("La rapidez no puede ser negativa.");
+                            }
+
+                        } while (rapidez < 0);
+
+                    } else if (type.equalsIgnoreCase("grass")) {
+                        System.out.println("Ingrese el habitat: ");
+                        String habitat = sc.nextLine();
                         
-                        
+                        int dominio;
+                        do {
+                            System.out.print("Ingrese el dominio sobre las plantas (1-100): ");
+                            dominio = sc.nextInt();
+
+                            if (dominio < 1 || dominio > 100) {
+                                System.out.println("El dominio debe estar en el rango de 1 a 100.");
+                            } else if (dominio < 0) {
+                                System.out.println("El dominio no puede ser un numero negativo.");
+                            }
+
+                        } while (dominio < 0 || dominio < 1 || dominio > 100);
+
                     }
-                    
+
                     Pokemon nuevoPokemon = new Pokemon(nombre, numeroPokedex, naturaleza);
-                    po.add(nuevoPokemon);
-                    
+
                     break;
                 default:
                     System.out.println("Esa opcion no esta disponible.");

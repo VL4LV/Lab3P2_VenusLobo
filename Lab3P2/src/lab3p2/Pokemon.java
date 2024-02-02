@@ -12,6 +12,9 @@ public class Pokemon {
     protected boolean atrapado = false;
     protected Pokeball ball;
 
+    public Pokemon() {
+    }
+
     public Pokemon(String nombrePokemon, int numeroEntrada, String naturaleza) {
         this.nombrePokemon = nombrePokemon;
         this.numeroEntrada = numeroEntrada;

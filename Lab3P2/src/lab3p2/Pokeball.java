@@ -10,6 +10,9 @@ public class Pokeball {
     protected int numeroSerie;
     protected int eficiencia;
 
+    public Pokeball() {
+    }
+
     public Pokeball(String color, int numeroSerie, int eficiencia) {
         this.color = color;
         this.numeroSerie = numeroSerie;

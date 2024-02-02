@@ -9,6 +9,9 @@ public class WaterType extends Pokemon {
     private boolean vivirFueraAgua;
     private int rapidezNadar;
 
+    public WaterType() {
+    }
+
     public WaterType(boolean vivirFueraAgua, int rapidezNadar, String nombrePokemon, int numeroEntrada, String naturaleza) {
         super(nombrePokemon, numeroEntrada, naturaleza);
         this.vivirFueraAgua = vivirFueraAgua;
