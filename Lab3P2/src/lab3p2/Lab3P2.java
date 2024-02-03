@@ -54,7 +54,6 @@ public class Lab3P2 {
                         }
 
                     } while (numeroPokedexRepetido);
-                    
 
                     System.out.print("Ingrese la naturaleza (Timido, Energetico, Misterioso): ");
                     sc.nextLine();
@@ -163,8 +162,17 @@ public class Lab3P2 {
                     System.out.print("Ingrese el numero de serie: ");
                     int numeroSerie = sc.nextInt();
 
-                    int eficienciaAtrapado = new Random().nextInt(3) + 1;
-                    System.out.print("Eficiencia de atrapado: " + eficienciaAtrapado);
+                    int eficienciaAtrapado;
+
+                    do {
+                        System.out.print("Ingrese la eficiencia de atrapado (1-3): ");
+                        eficienciaAtrapado = sc.nextInt();
+
+                        if (eficienciaAtrapado < 1 || eficienciaAtrapado > 3) {
+                            System.out.println("Ingrese un valor del 1 a 3.");
+                        }
+
+                    } while (eficienciaAtrapado < 1 || eficienciaAtrapado > 3);
 
                     //Gruardar la pokeball
                     Pokeball nuevaBall = new Pokeball(color, numeroSerie, eficienciaAtrapado);
@@ -302,7 +310,75 @@ public class Lab3P2 {
                     break; //FIN DEL CASE 4
 
                 case 5:
-                    break; //FIN DEL CASE 5
+                    System.out.println("");
+                    System.out.println("+++POKEBOLAS+++");
+
+                    if (ball.isEmpty()) {
+                        System.out.println("No hay Pokebolas. Vaya, agregue.");
+                    } else {
+                        for (int i = 0; i < ball.size(); i++) {
+                            System.out.println((i + 1) + ". " + ball.get(i).toString());
+                            System.out.println("-----------------------------------");
+                        }
+                    }
+
+                    int pokeball;
+                    do {
+                        System.out.print("Ingrese el numero de la Pokeball a usar: ");
+                        pokeball = sc.nextInt();
+
+                        // Validar el numero de la pokeball
+                        if (pokeball < 1 || pokeball > ball.size()) {
+                            System.out.println("Numero de Pokebola no valido.");
+                        }
+                    } while (pokeball < 1 || pokeball > ball.size());
+
+                    boolean PokemonsNoAtrapados = false;
+
+                    for (Pokemon pokemon : po) {
+                        if (!pokemon.isAtrapado()) {
+                            PokemonsNoAtrapados = true;
+                            System.out.println("EL POKEMON " + pokemon.getNombrePokemon() + " HA APARECIDO");
+
+                            // Preguntar al usuario si quiere capturar el pokemon o huir
+                            System.out.print("Quieres capturar al Pokemon? (1. Si / 2. Huir): ");
+                            int opcion = sc.nextInt();
+
+                            if (opcion == 1) {
+                                // Generar un numero aleatorio del 1 al 3
+                                int resultadoCaptura = new Random().nextInt(3) + 1;
+
+                                // Obtener la Pokebola seleccionada
+                                Pokeball selectedBall = ball.get(pokeball - 1);
+
+                                // Comparar con la eficiencia de la Pokebola
+                                if (resultadoCaptura <= selectedBall.getEficiencia()) {
+                                    System.out.println("¡Has atrapado a " + pokemon.getNombrePokemon() + " con exito!");
+
+                                    // Asignar la Pokebola al Pokemon y marcarlo como atrapado
+                                    pokemon.setBall(selectedBall);
+                                    pokemon.setAtrapado(true);
+
+                                    // Eliminar la Pokebola del ArrayList de Pokebolas
+                                    ball.remove(selectedBall);
+                                } else {
+                                    System.out.println("¡Oh no! El Pokemon escapo.");
+                                }
+                            } else if (opcion == 2) {
+                                System.out.println("Has huido del encuentro. Regresando al menu principal.");
+                                break;
+                            } else {
+                                System.out.println("Opcion no valida. Regresando al menu principal.");
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!PokemonsNoAtrapados) {
+                        System.out.println("No hay pokemons disponibles para atrapar.");
+                    }
+
+                    break; // FIN DEL CASE 5
 
                 case 6:
                     break; //FIN DEL CASE 6

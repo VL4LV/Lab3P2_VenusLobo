@@ -10,7 +10,7 @@ public class Pokemon {
     protected int numeroEntrada;
     protected String naturaleza;
     protected boolean atrapado = false;
-    protected Pokeball ball;
+    protected Pokeball ball = null;
 
     public Pokemon() {
     }
