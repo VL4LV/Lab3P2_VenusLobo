@@ -157,28 +157,92 @@ public class Lab3P2 {
                     System.out.println("");
                     System.out.println("+++POKEMONS+++");
 
-                    if (po.isEmpty()) {
-                        System.out.println("No hay pokemons.");
-                    } else {
-                        for (Pokemon p : po) {
+                    // Imprimir todos los pokemons de fuego
+                    System.out.println("+++POKEMONS DE FUEGO+++");
+                    for (Pokemon pokemon : po) {
+                        if (pokemon instanceof FireType) {
+                            System.out.println(pokemon.toString());
                             System.out.println("-----------------------------------");
-
-                            if (p instanceof FireType) {
-                                System.out.println("+++POKEMONS DE FUEGO+++");
-                                System.out.println(p.toString());
-                            } else if (p instanceof WaterType) {
-                                System.out.println("+++POKEMONS DE AGUA+++");
-                                System.out.println(p.toString());
-                            } else if (p instanceof GrassType) {
-                                System.out.println("+++POKEMONS DE PLANTA+++");
-                                System.out.println(p.toString());
-                            }
                         }
                     }
-
+                    // Imprimir todos los pokemons de agua
+                    System.out.println("+++POKEMONS DE AGUA+++");
+                    for (Pokemon pokemon : po) {
+                        if (pokemon instanceof WaterType) {
+                            System.out.println(pokemon.toString());
+                            System.out.println("-----------------------------------");
+                        }
+                    }
+                    // Imprimir todos los pokemons de planta
+                    System.out.println("+++POKEMONS DE PLANTA+++");
+                    for (Pokemon pokemon : po) {
+                        if (pokemon instanceof GrassType) {
+                            System.out.println(pokemon.toString());
+                            System.out.println("-----------------------------------");
+                        }
+                    }
                     break; // FIN DEL CASE 3
 
                 case 4:
+                    System.out.println("");
+                    System.out.print("Ingrese el tipo de Pokemon que desea eliminar (Fire, Water, Grass): ");
+                    sc.nextLine();
+                    String pokemonEliminar = sc.nextLine().toLowerCase();
+
+                    switch (pokemonEliminar) {
+                        case "fire":
+                            System.out.println("+++POKEMONS DE FUEGO+++");
+                            for (Pokemon pokemon : po) {
+                                if (pokemon instanceof FireType) {
+                                    System.out.println(pokemon.toString());
+                                    System.out.println("-----------------------------------");
+                                }
+                            }
+
+                            System.out.print("Ingrese el nombre del Pokemon a eliminar: ");
+                            String nombreEliminar = sc.nextLine();
+
+                            boolean encontrado = false;
+
+                            for (int i = 0; i < po.size(); i++) {
+                                Pokemon pokemon = po.get(i);
+                                if (pokemon instanceof FireType && pokemon.getNombrePokemon().equalsIgnoreCase(nombreEliminar)) {
+                                    System.out.println("Pokemon eliminado: " + pokemon.getNombrePokemon());
+                                    po.remove(i);
+                                    encontrado = true;
+                                    break;
+                                }
+                            }
+
+                            if (!encontrado) {
+                                System.out.println("No se encontro el pokemon.");
+                            }
+
+                            break; //FIN DE LOS FIRE
+
+                        case "water":
+                            System.out.println("+++POKEMONS DE AGUA+++");
+                            for (Pokemon pokemon : po) {
+                                if (pokemon instanceof WaterType) {
+                                    System.out.println(pokemon.toString());
+                                    System.out.println("-----------------------------------");
+                                }
+                            }
+                            break; //FIN DE LOS WATER
+
+                        case "grass":
+                            System.out.println("+++POKEMONS DE PLANTA+++");
+                            for (Pokemon pokemon : po) {
+                                if (pokemon instanceof GrassType) {
+                                    System.out.println(pokemon.toString());
+                                    System.out.println("-----------------------------------");
+                                }
+                            }
+                            break; //FIN DE LOS GRASS
+                        default:
+                            System.out.println("Ese Pokemon no esta.");
+                    }
+
                     break; //FIN DEL CASE 4
                 default:
                     System.out.println("Esa opcion no esta disponible.");
