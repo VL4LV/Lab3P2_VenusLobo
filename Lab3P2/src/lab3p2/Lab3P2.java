@@ -353,7 +353,7 @@ public class Lab3P2 {
 
                                 // Comparar con la eficiencia de la Pokebola
                                 if (resultadoCaptura <= selectedBall.getEficiencia()) {
-                                    System.out.println("¡Has atrapado a " + pokemon.getNombrePokemon() + " con exito!");
+                                    System.out.println("¡Has atrapado a " + pokemon.getNombrePokemon() + " felicidades!");
 
                                     // Asignar la Pokebola al Pokemon y marcarlo como atrapado
                                     pokemon.setBall(selectedBall);
@@ -381,7 +381,215 @@ public class Lab3P2 {
                     break; // FIN DEL CASE 5
 
                 case 6:
+                    System.out.println("");
+                    boolean hayPokemonAtrapado = false;
+                    for (Pokemon pokemon : po) {
+                        if (pokemon.isAtrapado()) {
+                            hayPokemonAtrapado = true;
+                            break;
+                        }
+                    }
+
+                    if (!hayPokemonAtrapado) {
+                        System.out.println("No hay pokemons atrapados para modificar.");
+                        break;
+                    }
+
+                    System.out.print("Ingrese el tipo de pokemon a modificar (Fire, Water, Grass): ");
+                    sc.nextLine();
+                    String modificar = sc.nextLine().toLowerCase();
+
+                    switch (modificar) {
+                        case "fire":
+                            System.out.println("--- POKEMON DE FUEGO ATRAPADOS ---");
+                            int contadorFire = 1;
+                            for (Pokemon pokemon : po) {
+                                if (pokemon instanceof FireType && pokemon.isAtrapado()) {
+                                    System.out.println(contadorFire + ". " + pokemon.getNombrePokemon());
+                                    contadorFire++;
+                                }
+                            }
+
+                            if (contadorFire == 1) {
+                                System.out.println("No hay pokemons Fire-Type atrapados para modificar.");
+                                break;
+                            }
+                            System.out.print("Seleccione el numero del pokemon a modificar: ");
+                            int numeroPokemonModificarFire = sc.nextInt();
+
+                            contadorFire = 1;
+                            Pokemon pokemonSeleccionadoFire = null;
+                            for (Pokemon pokemon : po) {
+                                if (pokemon instanceof FireType && pokemon.isAtrapado()) {
+                                    if (contadorFire == numeroPokemonModificarFire) {
+                                        pokemonSeleccionadoFire = pokemon;
+                                        break;
+                                    }
+                                    contadorFire++;
+                                }
+                            }
+
+                            System.out.println("--- ATRIBUTOS A MODIFICAR ---");
+                            System.out.println("1. Nombre");
+                            System.out.println("2. Numero de Entrada en la pokedex");
+                            System.out.println("3. Potencia de Llamas (Fire-Type)");
+
+                            System.out.print("Seleccione el atributo a modificar: ");
+                            int atributoModificarFire = sc.nextInt();
+
+                            switch (atributoModificarFire) {
+                                case 1:
+                                    System.out.print("Ingrese el nuevo nombre: ");
+                                    sc.nextLine();
+                                    String nuevoNombreFire = sc.nextLine();
+                                    pokemonSeleccionadoFire.setNombrePokemon(nuevoNombreFire);
+                                    break;
+                                case 2:
+                                    System.out.print("Ingrese el nuevo numero de entrada en la pokedex: ");
+                                    int nuevoNumeroPokedexFire = sc.nextInt();
+                                    pokemonSeleccionadoFire.setNumeroEntrada(nuevoNumeroPokedexFire);
+                                    break;
+                                case 3:
+                                    System.out.print("Ingrese la nueva potencia de llamas: ");
+                                    int nuevaPotenciaLlamasFire = sc.nextInt();
+                                    ((FireType) pokemonSeleccionadoFire).setPotenciaLlamas(nuevaPotenciaLlamasFire);
+                                    break;
+                            }
+
+                            System.out.println("Pokemon modificado.");
+                            break;
+
+                        case "water":
+                            System.out.println("--- POKEMON DE AGUA ATRAPADOS ---");
+                            int contadorWater = 1;
+                            for (Pokemon pokemon : po) {
+                                if (pokemon instanceof WaterType && pokemon.isAtrapado()) {
+                                    System.out.println(contadorWater + ". " + pokemon.getNombrePokemon());
+                                    contadorWater++;
+                                }
+                            }
+
+                            if (contadorWater == 1) {
+                                System.out.println("No hay pokemons Water-Type atrapados para modificar.");
+                                break;
+                            }
+
+                            System.out.print("Seleccione el numero del pokemon a modificar: ");
+                            int numeroPokemonModificarWater = sc.nextInt();
+
+                            contadorWater = 1;
+                            Pokemon pokemonSeleccionadoWater = null;
+                            for (Pokemon pokemon : po) {
+                                if (pokemon instanceof WaterType && pokemon.isAtrapado()) {
+                                    if (contadorWater == numeroPokemonModificarWater) {
+                                        pokemonSeleccionadoWater = pokemon;
+                                        break;
+                                    }
+                                    contadorWater++;
+                                }
+                            }
+
+                            System.out.println("--- ATRIBUTOS A MODIFICAR ---");
+                            System.out.println("1. Nombre");
+                            System.out.println("2. Numero de Entrada en la pokexed");
+                            System.out.println("3. Puede Vivir Fuera del Agua");
+
+                            System.out.print("Seleccione el atributo a modificar: ");
+                            int atributoModificarWater = sc.nextInt();
+
+                            switch (atributoModificarWater) {
+                                case 1:
+                                    System.out.print("Ingrese el nuevo nombre: ");
+                                    sc.nextLine();
+                                    String nuevoNombreWater = sc.nextLine();
+                                    pokemonSeleccionadoWater.setNombrePokemon(nuevoNombreWater);
+                                    break;
+                                case 2:
+                                    System.out.print("Ingrese el nuevo numero de entrada en la pokedex: ");
+                                    int nuevoNumeroPokedexWater = sc.nextInt();
+                                    pokemonSeleccionadoWater.setNumeroEntrada(nuevoNumeroPokedexWater);
+                                    break;
+                                case 3:
+                                    System.out.print("¿Puede vivir fuera del agua? (1. si / 2. No): ");
+                                    int puedeVivirFueraAguaWater = sc.nextInt();
+                                    ((WaterType) pokemonSeleccionadoWater).setVivirFueraAgua(puedeVivirFueraAguaWater == 1);
+                                    break;
+                            }
+
+                            System.out.println("Pokemon modificado.");
+
+                            break;
+
+                        case "grass":
+                            System.out.println("--- POKEMON DE PLANTA ATRAPADOS ---");
+                            int contadorGrass = 1;
+                            for (Pokemon pokemon : po) {
+                                if (pokemon instanceof GrassType && pokemon.isAtrapado()) {
+                                    System.out.println(contadorGrass + ". " + pokemon.getNombrePokemon());
+                                    contadorGrass++;
+                                }
+                            }
+
+                            if (contadorGrass == 1) {
+                                System.out.println("No hay Pokémon Grass-Type atrapados para modificar.");
+                                break;
+                            }
+
+                            System.out.print("Seleccione el numero del pokemon a modificar: ");
+                            int numeroPokemonModificarGrass = sc.nextInt();
+
+                            contadorGrass = 1;
+                            Pokemon pokemonSeleccionadoGrass = null;
+                            for (Pokemon pokemon : po) {
+                                if (pokemon instanceof GrassType && pokemon.isAtrapado()) {
+                                    if (contadorGrass == numeroPokemonModificarGrass) {
+                                        pokemonSeleccionadoGrass = pokemon;
+                                        break;
+                                    }
+                                    contadorGrass++;
+                                }
+                            }
+                            System.out.println("--- ATRIBUTOS A MODIFICAR ---");
+                            System.out.println("1. Nombre");
+                            System.out.println("2. Numero de Entrada en la pokexed");
+                            System.out.println("3. Habitat");
+
+                            System.out.print("Seleccione el atributo a modificar: ");
+                            int atributoModificarGrass = sc.nextInt();
+
+                            switch (atributoModificarGrass) {
+                                case 1:
+                                    System.out.print("Ingrese el nuevo nombre: ");
+                                    sc.nextLine(); 
+                                    String nuevoNombreGrass = sc.nextLine();
+                                    pokemonSeleccionadoGrass.setNombrePokemon(nuevoNombreGrass);
+                                    break;
+                                case 2:
+                                    System.out.print("Ingrese el nuevo numero de entrada en la pokedex: ");
+                                    int nuevoNumeroPokedexGrass = sc.nextInt();
+                                    pokemonSeleccionadoGrass.setNumeroEntrada(nuevoNumeroPokedexGrass);
+                                    break;
+                                case 3:
+                                    System.out.print("Ingrese el nuevo habitat: ");
+                                    sc.nextLine();
+                                    String nuevoHabitatGrass = sc.nextLine();
+                                    ((GrassType) pokemonSeleccionadoGrass).setHabitad(nuevoHabitatGrass);
+                                    break;
+                                default:
+                                    System.out.println("Opcion no valida.");
+                                    break;
+                            }
+
+                            break;
+
+                        default:
+                            System.out.println("Ese pokemon no existe.");
+                    }
                     break; //FIN DEL CASE 6
+                    
+                case 7: 
+                    System.out.println("Gracias por el dolor de cabeza con la modificacion...");
+                    break; //FIN DEL CASE 7
                 default:
                     System.out.println("Esa opcion no esta disponible.");
             }
