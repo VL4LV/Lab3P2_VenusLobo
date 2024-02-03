@@ -36,8 +36,25 @@ public class Lab3P2 {
                     sc.nextLine();
                     String nombre = sc.nextLine();
 
-                    System.out.print("Ingrese un numero de entrada en la pokedex: ");
-                    int numeroPokedex = sc.nextInt();
+                    boolean numeroPokedexRepetido;
+                    int numeroPokedex;
+
+                    do {
+                        System.out.print("Ingrese un numero de entrada en la pokedex: ");
+                        numeroPokedex = sc.nextInt();
+
+                        // Ver si el numero ya existe
+                        numeroPokedexRepetido = false;
+                        for (Pokemon pokemon : po) {
+                            if (pokemon.getNumeroEntrada() == numeroPokedex) {
+                                System.out.println("Ya existe un Pokemon con ese numero en la Pokedex.");
+                                numeroPokedexRepetido = true;
+                                break;
+                            }
+                        }
+
+                    } while (numeroPokedexRepetido);
+                    
 
                     System.out.print("Ingrese la naturaleza (Timido, Energetico, Misterioso): ");
                     sc.nextLine();
@@ -140,6 +157,7 @@ public class Lab3P2 {
                 case 2:
                     System.out.println("");
                     System.out.print("Ingrese color de la Pokeball: ");
+                    sc.nextLine();
                     String color = sc.nextLine();
 
                     System.out.print("Ingrese el numero de serie: ");
@@ -228,6 +246,25 @@ public class Lab3P2 {
                                     System.out.println("-----------------------------------");
                                 }
                             }
+
+                            System.out.print("Ingrese el nombre del Pokemon a eliminar: ");
+                            String nombreEliminarWater = sc.nextLine();
+
+                            boolean encontra = false;
+
+                            for (int i = 0; i < po.size(); i++) {
+                                Pokemon pokemon = po.get(i);
+                                if (pokemon instanceof WaterType && pokemon.getNombrePokemon().equalsIgnoreCase(nombreEliminarWater)) {
+                                    System.out.println("Pokemon eliminado: " + pokemon.getNombrePokemon());
+                                    po.remove(i);
+                                    encontra = true;
+                                    break;
+                                }
+                            }
+
+                            if (!encontra) {
+                                System.out.println("No se encontro el pokemon.");
+                            }
                             break; //FIN DE LOS WATER
 
                         case "grass":
@@ -238,12 +275,37 @@ public class Lab3P2 {
                                     System.out.println("-----------------------------------");
                                 }
                             }
+
+                            System.out.print("Ingrese el nombre del Pokemon a eliminar: ");
+                            String nombreEliminarGrass = sc.nextLine();
+
+                            boolean encont = false;
+
+                            for (int i = 0; i < po.size(); i++) {
+                                Pokemon pokemon = po.get(i);
+                                if (pokemon instanceof GrassType && pokemon.getNombrePokemon().equalsIgnoreCase(nombreEliminarGrass)) {
+                                    System.out.println("Pokemon eliminado: " + pokemon.getNombrePokemon());
+                                    po.remove(i);
+                                    encont = true;
+                                    break;
+                                }
+                            }
+
+                            if (!encont) {
+                                System.out.println("No se encontro el pokemon.");
+                            }
                             break; //FIN DE LOS GRASS
                         default:
                             System.out.println("Ese Pokemon no esta.");
                     }
 
                     break; //FIN DEL CASE 4
+
+                case 5:
+                    break; //FIN DEL CASE 5
+
+                case 6:
+                    break; //FIN DEL CASE 6
                 default:
                     System.out.println("Esa opcion no esta disponible.");
             }
