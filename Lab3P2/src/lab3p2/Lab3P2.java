@@ -13,6 +13,7 @@ public class Lab3P2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ArrayList<Pokemon> po = new ArrayList();
+        ArrayList<Pokeball> ball = new ArrayList();
 
         int opc = 0;
         while (opc != 7) {
@@ -105,7 +106,7 @@ public class Lab3P2 {
                         po.add(waterPokemon);
 
                     } else if (type.equalsIgnoreCase("grass")) {
-                        System.out.println("Ingrese el habitat: ");
+                        System.out.print("Ingrese el habitat: ");
                         String habitat = sc.nextLine();
 
                         int dominio;
@@ -121,9 +122,7 @@ public class Lab3P2 {
 
                         } while (dominio < 0 || dominio < 1 || dominio > 100);
 
-
-
-                            // Crear un GrassType especifico
+                        // Crear un GrassType especifico
                         GrassType grassPokemon = new GrassType();
                         grassPokemon.setNombrePokemon(nombre);
                         grassPokemon.setNumeroEntrada(numeroPokedex);
@@ -139,30 +138,48 @@ public class Lab3P2 {
                     break; //FIN DEL CASE 1
 
                 case 2:
+                    System.out.println("");
                     System.out.print("Ingrese color de la Pokeball: ");
                     String color = sc.nextLine();
-                    
-                    
+
                     System.out.print("Ingrese el numero de serie: ");
-                    int numeroSerie = sc.nextInt(); 
-                    
+                    int numeroSerie = sc.nextInt();
+
                     int eficienciaAtrapado = new Random().nextInt(3) + 1;
-                    System.out.print("Eficiencia de atrapado: "+eficienciaAtrapado);
-                    
-                    Pokeball ball = new Pokeball(color, numeroSerie,eficienciaAtrapado);
-                    break;
+                    System.out.print("Eficiencia de atrapado: " + eficienciaAtrapado);
+
+                    //Gruardar la pokeball
+                    Pokeball nuevaBall = new Pokeball(color, numeroSerie, eficienciaAtrapado);
+                    ball.add(nuevaBall);
+                    break; //FIN DEL CASE 2
 
                 case 3:
-                    System.out.println("POKEMONS");
+                    System.out.println("");
+                    System.out.println("+++POKEMONS+++");
+
                     if (po.isEmpty()) {
                         System.out.println("No hay pokemons.");
                     } else {
                         for (Pokemon p : po) {
-                            System.out.println(p.toString());
                             System.out.println("-----------------------------------");
+
+                            if (p instanceof FireType) {
+                                System.out.println("+++POKEMONS DE FUEGO+++");
+                                System.out.println(p.toString());
+                            } else if (p instanceof WaterType) {
+                                System.out.println("+++POKEMONS DE AGUA+++");
+                                System.out.println(p.toString());
+                            } else if (p instanceof GrassType) {
+                                System.out.println("+++POKEMONS DE PLANTA+++");
+                                System.out.println(p.toString());
+                            }
                         }
                     }
-                    break;
+
+                    break; // FIN DEL CASE 3
+
+                case 4:
+                    break; //FIN DEL CASE 4
                 default:
                     System.out.println("Esa opcion no esta disponible.");
             }

@@ -76,7 +76,7 @@ public class WaterType extends Pokemon {
 
     @Override
     public String toString() {
-        return super.toString() + "\nVive fuera del agua=" + vivirFueraAgua + "\n"
+        return super.toString() + "\nVive fuera del agua = " + vivirFueraAgua + "\n"
                 + "Rapidez al nadar = " + rapidezNadar;
     }
 
